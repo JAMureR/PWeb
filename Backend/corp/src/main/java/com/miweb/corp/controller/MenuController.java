@@ -1,12 +1,15 @@
 package com.miweb.corp.controller;
 
 import com.miweb.corp.model.MenuItem;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController // Esto convierte la clase en un controlador REST
 public class MenuController {
 
