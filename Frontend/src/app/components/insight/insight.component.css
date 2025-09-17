@@ -1,0 +1,111 @@
+/* contenedor general */
+.insights {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #eaeaea;
+}
+
+/* título */
+.insights__title {
+  font-size: 1.75rem;
+  margin: 0 0 1.25rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* grid: 1 columna (mobile) -> 2 columnas (tablet+) */
+.insights__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 275px); /* cada tarjeta de 275px */
+  justify-content: center; /* centra las tarjetas en la fila */
+  gap: 50px; /* espacio entre tarjetas */
+}
+
+
+/* tarjetas */
+.insight-card {
+ position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  height: 425px;
+  max-width: 275px;
+}
+
+
+/* imagen */
+.insight-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  filter: brightness(0.5); /* oscurece para que el texto destaque */
+}
+
+/* cuerpo */
+.insight-card__body {
+   position: absolute; /* texto superpuesto */
+  bottom: 0;          /* texto pegado abajo */
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* título y resumen */
+.insight-card__title {
+   margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+.insight-card__summary {
+  margin: 0;
+  font-size: .95rem;
+  opacity: .95;
+}
+
+/* cta */
+.insight-card__cta {
+  margin-top: 0.5rem;
+  display:flex;
+  justify-content: flex-start;
+}
+
+/* botón estilo */
+.btn-primary {
+  background: linear-gradient(90deg,#7b5cff,#b86bff);
+  border: none;
+  color: #0b0b0c;
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(120,66,255,0.15);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(120,66,255,0.2); }
+
+/* responsive: 2 columnas desde 720px, 3 columnas opcional a 1100px */
+@media (min-width: 720px) {
+  .insights__grid {
+    grid-template-columns: repeat(auto-fit, 275px); /* ancho fijo igual que base */
+    justify-content: center;
+    gap: 50px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .insights__grid {
+    grid-template-columns: repeat(auto-fit, 275px);
+    justify-content: center;
+    gap: 50px;
+  }
+}

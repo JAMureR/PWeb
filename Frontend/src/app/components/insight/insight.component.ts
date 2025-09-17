@@ -7,48 +7,31 @@ import { Component, OnInit } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section>
-      <h2>Insights</h2>
-      <div *ngFor="let i of insights" class="insight-card">
-        <img [src]="i.imageUrl" alt="{{ i.title }}" width="150">
-        <h3>{{ i.title }}</h3>
-        <p>{{ i.summary }}</p>
-        <button>{{ i.cta }}</button>
+    <section class="insights">
+    <h2 class="insights__title">Insights</h2>
+      <div class="insights__grid">
+        <article class="insight-card" *ngFor="let i of insights">
+          <div class="insight-card__media">
+            <img [src]="i.imageUrl" [alt]="i.title" />
+          </div>
+          <div class="insight-card__body">
+            <h3 class="insight-card__title">{{ i.title }}</h3>
+            <p class="insight-card__summary">{{ i.summary }}</p>
+            <div class="insight-card__cta">
+              <button class="btn-primary">{{ i.cta }}</button>
+            </div>
+          </div>
+        </article>
       </div>
-    </section>
+</section>
   `,
-  styles: [`
-    section {
-      padding: 20px;
-    }
-    .insight-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 15px;
-      max-width: 300px;
-    }
-    img {
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-  `]
+  styleUrls: ['./insight.component.css'],
+  
 })
 export class InsightComponent implements OnInit {
   insights: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.http.get<any[]>('http://localhost:8080/api/insights')
