@@ -22,7 +22,7 @@ public class InsightController {
                         "Leer más"),
                 new Insight("IA generativa en el trabajo",
                         "De la experimentación al impacto.",
-                        "/assets/insights/genai.jpg",
+                        "/assets/insights/genai.png",
                         "Leer más")
         );
     }
