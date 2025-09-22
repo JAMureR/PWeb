@@ -8,25 +8,32 @@ import { Component, OnInit } from '@angular/core';
   imports: [CommonModule],
   template: `
     <section class="insights">
-    <h2 class="insights__title">Insights</h2>
-      <div class="insights__grid">
-        <article class="insight-card" *ngFor="let i of insights">
-          <div class="insight-card__media">
-            <img [src]="i.imageUrl" [alt]="i.title" />
-          </div>
-          <div class="insight-card__body">
-            <h3 class="insight-card__title">{{ i.title }}</h3>
-            <p class="insight-card__summary">{{ i.summary }}</p>
-            <div class="insight-card__cta">
-              <button class="btn-primary">{{ i.cta }}</button>
-            </div>
-          </div>
-        </article>
+  <div class="insights__grid">
+    <article class="insight-card" *ngFor="let i of insights">
+      <div class="insight-card__media">
+        <img [src]="i.imageUrl" [alt]="i.title" />
       </div>
+      <div class="insight-card__body">
+      <!-- Texto original -->
+        <div class="insight-card__text-bg">
+          <h3 class="insight-card__title">{{ i.title }}</h3>
+          <p class="insight-card__summary">{{ i.summary }}</p>
+        </div>
+        <!-- Texto explicativo que aparece en hover -->
+        <div class="insight-card__extra-text">
+          <h4>Más información...</h4>
+          <p>{{ i.extraText }}</p>
+          <div class="insight-card__cta">
+            <button class="btn-primary">{{ i.cta }}</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
 </section>
   `,
   styleUrls: ['./insight.component.css'],
-  
+
 })
 export class InsightComponent implements OnInit {
   insights: any[] = [];
