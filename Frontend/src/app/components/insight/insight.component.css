@@ -190,3 +190,29 @@
     width: 360px;
   }
 }
+
+/* Scrollbar para Webkit (Chrome, Edge, Safari) */
+.insights__grid::-webkit-scrollbar {
+  height: 8px; /* grosor horizontal */
+}
+
+.insights__grid::-webkit-scrollbar-track {
+  background: #111; /* fondo del track, más oscuro que tu fondo */
+  border-radius: 4px;
+}
+
+.insights__grid::-webkit-scrollbar-thumb {
+  background: #9b32ff; /* color del pulgar (barra) */
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.insights__grid::-webkit-scrollbar-thumb:hover {
+  background: #d05aff; /* color al pasar el cursor */
+}
+
+/* Scrollbar para Firefox */
+.insights__grid {
+  scrollbar-width: thin;
+  scrollbar-color: #9b32ff #111; /* thumb y track */
+}
