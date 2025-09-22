@@ -1,8 +1,12 @@
 <nav>
-  <ul>
-    <li *ngFor="let item of menuItems">
-      {{ item.label }}
-      <ul *ngIf="item.subItems.length > 0">
+  <ul class="nav-menu">
+    <li *ngFor="let item of menu" [class.open]="item.isOpen">
+      <a (click)="toggleSubmenu(item)">
+        {{ item.label }}
+        <img src="assets/icons/flecha.png" alt="flecha" class="arrow-icon">
+      </a>
+
+      <ul class="submenu" *ngIf="item.subItems.length > 0">
         <li *ngFor="let sub of item.subItems">
           {{ sub }}
         </li>
