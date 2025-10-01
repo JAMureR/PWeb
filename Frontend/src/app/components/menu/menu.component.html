@@ -1,16 +1,26 @@
 <nav>
+  <!-- Logo -->
+  <div class="logo">
+    <img src="assets/icons/JM_Dynamics.png" alt="Logo">
+  </div>
+
+  <!-- Menu -->
   <ul class="nav-menu">
-    <li *ngFor="let item of menu" [class.open]="item.isOpen">
+    <li *ngFor="let item of menu" [class.active]="activeItem === item">
       <a (click)="toggleSubmenu(item)">
         {{ item.label }}
         <img src="assets/icons/flecha.png" alt="flecha" class="arrow-icon">
       </a>
-
-      <ul class="submenu" *ngIf="item.subItems.length > 0">
-        <li *ngFor="let sub of item.subItems">
-          {{ sub }}
-        </li>
-      </ul>
     </li>
   </ul>
+
+  <!-- Submenu con animación -->
+  <ul class="submenu"
+    [@submenuAnim]="activeItem?.subItems?.length > 0 ? 'open' : 'closed'">
+  <li *ngFor="let sub of activeItem?.subItems || []">
+    <a>{{ sub }}</a>
+  </li>
+</ul>
+
+  <div class="nav-right"><!-- espacio vacío --></div>
 </nav>
