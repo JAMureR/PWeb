@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section class="insights">
+<section class="insights">
   <div class="insights__grid">
     <article class="insight-card" *ngFor="let i of insights">
       <div class="insight-card__media">

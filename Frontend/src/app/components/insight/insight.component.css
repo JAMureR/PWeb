@@ -10,16 +10,19 @@
   max-width: 1200px;
   margin: 0 auto;
   color: #eaeaea;
+  transition: all 0.3s ease; 
 }
 
-/* === GRID BASE (móvil con scroll horizontal) === */
+/* === GRID BASE  === */
 .insights__grid {
+  justify-content: start;
+  box-sizing: border-box; /* para que el padding no sume ancho extra */
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 275px;
   gap: 20px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  
   padding-bottom: 1rem;
 }
 
@@ -160,6 +163,7 @@
 
 /* === RESPONSIVE === */
 
+
 /* tablet: 3 columnas */
 @media (min-width: 720px) {
   .insights__grid {
@@ -188,6 +192,7 @@
     max-width: 650px;  
     height: 560px;     
     width: 360px;
+    transition: all 0.6s ease; 
   }
 }
 

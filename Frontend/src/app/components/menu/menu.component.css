@@ -14,15 +14,35 @@ nav {
 .logo {
   justify-self: center; /* ✅ mover el logo en el grid */
   transition: all 0.3s ease; /* ✅ suaviza el desplazamiento del contenedor */
+  cursor: pointer;
 }
 
-.logo img {
-  height: clamp(45px, 5vw, 60px); /* escala fluida */
+/* JM */
+.logo .jm-img {
+  height: clamp(40px, 5vw, 60px); /* tamaño fluido */
   width: auto;
-  cursor: pointer;
-  margin-left: 50px;/* margen inicial desde la izquierda */
-  justify-self: start;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
+  
+}
+
+/* Dynamics */
+.logo .dynamics-img {
+  height: clamp(20px, 2.5vw, 30px); /* tamaño fluido */
+  width: auto;
+  opacity: 0; /* oculto */
+  transition: all 0.3s ease;
+  
+}
+
+/* Hover sobre el logo */
+.logo:hover .jm-img {
+  transform: scale(0.6) translateY(-10px)translateX(-10px); /* se hace más pequeña y sube */
+  transition: all 0.3s ease;
+}
+
+.logo:hover .dynamics-img {
+  opacity: 1; /* Dynamics aparece */
+  transform: scale(2) translateY(0)translateX(-13px); /* Dynamics sube a su posición */
 }
 
 
@@ -68,11 +88,13 @@ li.active .arrow-icon {
   position: absolute;
   top: 100%;      /* justo debajo del nav */
   left: 0;
-  width: 100vw;   /* ocupa todo el ancho */
+  width: 100vW;   /* ocupa todo el ancho */
   background-color: #111;
   margin: 0;
   padding: 2rem;
+  justify-content: center;
   list-style: none;
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -83,11 +105,13 @@ li.active .arrow-icon {
 
 /* subitems */
 .submenu li {
-  font-size: 16px;
+ 
+  font-size: clamp(12px, 1vw, 19px);
   font-weight: 400;
-  flex: 1 1 calc(25% - 1.5rem);
-  min-width: 200px;
-  padding: 0.5rem 0;
+  flex: 0 1 auto;       /* que ocupe solo el ancho de su contenido */
+  min-width: 150px;     /* opcional: no se haga demasiado pequeño */
+  padding: 0.5rem 1rem; /* ajusta un poco el espacio */
+  text-align: center;   /* centra el texto dentro del item */
 }
 
 /* RESPONSIVE */
