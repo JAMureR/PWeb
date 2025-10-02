@@ -12,6 +12,7 @@ nav {
 
 /* logo */
 .logo {
+  
   justify-self: center; /* ✅ mover el logo en el grid */
   transition: all 0.3s ease; /* ✅ suaviza el desplazamiento del contenedor */
   cursor: pointer;
@@ -19,7 +20,7 @@ nav {
 
 /* JM */
 .logo .jm-img {
-  height: clamp(40px, 5vw, 60px); /* tamaño fluido */
+  height: clamp(50px, 8vw, 80px); /* tamaño fluido */
   width: auto;
   transition: all 0.3s ease;
   
@@ -27,8 +28,7 @@ nav {
 
 /* Dynamics */
 .logo .dynamics-img {
-  height: clamp(20px, 2.5vw, 30px); /* tamaño fluido */
-  width: auto;
+  width: 10px;
   opacity: 0; /* oculto */
   transition: all 0.3s ease;
   
@@ -36,13 +36,13 @@ nav {
 
 /* Hover sobre el logo */
 .logo:hover .jm-img {
-  transform: scale(0.6) translateY(-10px)translateX(-10px); /* se hace más pequeña y sube */
+  transform: scale(0.5) translateY(-30px)translateX(-20px); /* se hace más pequeña y sube */
   transition: all 0.3s ease;
 }
 
 .logo:hover .dynamics-img {
   opacity: 1; /* Dynamics aparece */
-  transform: scale(2) translateY(0)translateX(-13px); /* Dynamics sube a su posición */
+  transform: scale(14) translateY(-1.7px)translateX(-0.4px); /* Dynamics sube a su posición */
 }
 
 
@@ -63,6 +63,7 @@ nav {
 
 /* enlace del item */
 .nav-menu a {
+  position: relative;
   color: #fff;
   text-decoration: none;
   font-weight: 400;
@@ -71,6 +72,28 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  transition: all 0.3s ease; 
+}
+
+/* la línea */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px; /* distancia respecto al texto */
+  width: 0%;
+  height: 2px;
+  background-color: #9b32ff; /* color de la línea */
+  transition: width 0.3s ease; /* animación fluida */
+}
+
+.nav-menu a:hover {
+  color: #ffffff6c;
+}
+
+/* Cuando está en hover o abierto */
+.nav-menu li.active a::after {
+  width: 85%; /* la línea se dibuja (acaba antes si quieres más corto) */
 }
 
 .arrow-icon {
@@ -105,7 +128,6 @@ li.active .arrow-icon {
 
 /* subitems */
 .submenu li {
- 
   font-size: clamp(12px, 1vw, 19px);
   font-weight: 400;
   flex: 0 1 auto;       /* que ocupe solo el ancho de su contenido */
@@ -123,19 +145,11 @@ li.active .arrow-icon {
 
   /* centramos el logo */
   .logo {
+    font-size: clamp(14px, 0.5vw, 19px);
     grid-column: 2;      /* el logo ocupa la columna central */
     justify-self: center;
   }
-
-  .logo img {
-    height: 45px;        /* opcional: lo haces más grande en móviles */
-  }
 }
 
-@media (max-width: 600px) {
-  .logo img {
-    height: 40px;        
-  }
-}
 
 
