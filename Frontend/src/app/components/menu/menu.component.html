@@ -2,7 +2,7 @@
   <!-- Logo -->
   <div class="logo">
     <img src="assets/icons/jm.png" alt="JM" class="jm-img">
-  <img src="assets/icons/dynamics.png" alt="Dynamics" class="dynamics-img">
+    <img src="assets/icons/dynamics.png" alt="Dynamics" class="dynamics-img">
   </div>
 
   <!-- Menu -->
@@ -10,18 +10,33 @@
     <li *ngFor="let item of menu" [class.active]="activeItem === item">
       <a (click)="toggleSubmenu(item)">
         {{ item.label }}
-        <img src="assets/icons/flecha.png" alt="flecha" class="arrow-icon">
+        <img src="assets/icons/flecha.png" alt="felcha" class="arrow-icon">
       </a>
     </li>
   </ul>
 
   <!-- Submenu con animación -->
-  <ul class="submenu"
-    [@submenuAnim]="activeItem?.subItems?.length > 0 ? 'open' : 'closed'">
-  <li *ngFor="let sub of activeItem?.subItems || []">
-    <a>{{ sub }}</a>
-  </li>
-</ul>
+  <ul class="submenu" [@submenuAnim]="activeItem?.subItems?.length > 0 ? 'open' : 'closed'">
 
-  <div class="nav-right"><!-- espacio vacío --></div>
+    <!-- Aquí aparece el título dinámico -->
+  <h2 *ngIf="activeItem?.label">
+    {{ activeItem.label }}
+    <img src="assets/icons/Flecha_sig.png" alt="sig" class="sig-icon">
+  </h2>
+
+    <li *ngFor="let sub of activeItem?.subItems || []">
+      <a>{{ sub }}</a>
+    </li>
+  </ul>
+
+  <div class="language-selector" (click)="toggleLanguageMenu()">
+    <a class="selected-language">
+      <img src="assets/icons/world.png" alt="world" class="world-icon">
+      {{ selectedLanguage }}
+      <img src="assets/icons/flecha.png" alt="flecha" class="arrow-icon"></a>
+    <ul class="language-menu" [class.open]="languageMenuOpen">
+      <li (click)="selectLanguage('Español')">Español</li>
+      <li (click)="selectLanguage('Inglés')">Inglés</li>
+    </ul>
+  </div>
 </nav>

@@ -1,3 +1,5 @@
+
+
 /* contenedor del nav */
 nav {
   position: relative;
@@ -80,9 +82,9 @@ nav {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -10px; /* distancia respecto al texto */
+  bottom: -5px; /* distancia respecto al texto */
   width: 0%;
-  height: 2px;
+  height: 1px;
   background-color: #9b32ff; /* color de la línea */
   transition: width 0.3s ease; /* animación fluida */
 }
@@ -126,6 +128,33 @@ li.active .arrow-icon {
   overflow: hidden; /* crucial para animar altura */
 }
 
+.submenu h2 {
+  position: relative;
+  width: 100%;              /* ocupa todo el ancho del bloque */
+  text-align: left;       /* centrado horizontal */
+  margin-left: 55px;
+  color: #fff;              /* blanco para destacar */
+  font-size: clamp(24px, 1.5vw, 32px);
+  font-weight: 450;
+}
+
+/* Línea oculta por defecto */
+.submenu h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;              /* distancia de la línea respecto al texto */
+  width: 0%;                 /* empieza oculta */
+  height: 2px;
+  background-color: #ffffff; 
+  transition: width 0.3s ease;
+}
+
+/* Cuando pasas el ratón */
+.submenu h2:hover::after {
+  width: 17.5%;               /* se despliega hasta ocupar todo el ancho */
+}
+
 /* subitems */
 .submenu li {
   font-size: clamp(12px, 1vw, 19px);
@@ -136,11 +165,130 @@ li.active .arrow-icon {
   text-align: center;   /* centra el texto dentro del item */
 }
 
+/* estilo base para el enlace del submenu */
+.submenu li a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;     /* importante: que el ::after se mida respecto al ancho del link */
+  padding-bottom: 6px;       /* espacio para la línea */
+  font-weight: 400;
+  font-size: clamp(12px, 1vw, 19px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* pseudo-elemento (línea oculta) */
+.submenu li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;       /* distancia de la línea respecto al texto */
+  width: 0%;
+  height: 1px;
+  width: 100%;
+  background-color: #ffffff; /* color de la línea */
+  opacity: 0;
+  transition: width 0.3s ease;
+}
+
+/* cuando pasas el ratón */
+.submenu li:hover a::after {
+  opacity: 1; /* aparece completa */
+}
+
+
+.submenu .arrow-icon {
+  width: 18px;              /* ajusta tamaño */
+  height: 18px;
+  filter: invert(37%) sepia(84%) saturate(4000%) hue-rotate(260deg);
+ 
+  transition: transform 0.3s ease;
+}
+
+/* Estilo base de la flecha */
+.submenu h2 .sig-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: -4px;
+  transition: transform 0.3s ease;
+}
+
+/* Cuando pasas el cursor por el h2 */
+.submenu h2:hover .sig-icon {
+  transform: translateX(5px); /* se desplaza un poco a la derecha */
+  filter: brightness(0.7);    /* se oscurece ligeramente */
+  transition: transform 0.1s ease;
+}
+
+.world-icon {
+  width: clamp(12px, 1vw, 19px);
+  vertical-align: -2px; /* valor negativo lo baja */
+}
+
+.language-selector {
+  position: relative;   /* 📌 para que el menú se ancle a este div */
+  justify-self: center;   /* lo pegas a la derecha */
+  align-self: center;  /* lo centra verticalmente en la fila del grid */
+  display: flex;       /* para centrar el texto + flecha */
+  align-items: center; /* centra verticalmente el contenido interno */
+  gap: 0.3rem;         /* espacio entre texto y flecha */
+  cursor: pointer;
+  transition: all 0.3s ease; 
+}
+
+.selected-language {
+  color: #fff;
+  font-weight: 400;
+  font-size: clamp(12px, 1vw, 19px);
+  transition: all 0.3s ease;
+}
+
+.language-menu {
+  position: absolute;       /* ✅ se posiciona relativo al selector */
+  top: 100%;                /* ✅ justo debajo */
+  left: 50%;                /* ✅ centrado horizontal */
+  transform: translateX(-50%);
+  background-color: #111;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  min-width: 120px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -10px); /* centrado + animación */
+  transition: all 0.3s ease;
+  z-index: 9999;
+  text-align: center;
+}
+
+.language-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.language-menu li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.language-menu li:hover {
+  background-color: #333;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   /* ocultamos el menú */
   .nav-menu {
     display: none;
+  }
+  .language-selector {
+  display: none; 
   }
 
   /* centramos el logo */

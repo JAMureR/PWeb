@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
   trigger('submenuAnim', [
     state('closed', style({ height: '0px', opacity: 0, overflow: 'hidden' })),
     state('open', style({ height: '*', opacity: 1, overflow: 'hidden' })),
-    transition('closed <=> open', animate('200ms ease-in-out'))
+    transition('closed <=> open', animate('500ms ease-in-out'))
   ])
 ]
   
@@ -22,7 +22,10 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
   menu: any[] = [];
   menuOpen: boolean = false;
-  activeItem: any = null; // ✅ nuevo: el item actualmente abierto
+  activeItem: any = null; //   el item actualmente abierto
+  //  idioma
+  selectedLanguage: string = 'Español';
+  languageMenuOpen: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -52,4 +55,16 @@ export class MenuComponent implements OnInit {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  //  MÉTODOS DE LENGUAJE
+  toggleLanguageMenu() {
+    this.languageMenuOpen = !this.languageMenuOpen;
+  }
+
+  selectLanguage(lang: string) {
+    this.selectedLanguage = lang;
+    this.languageMenuOpen = false;
+  }
+  
 }
+

@@ -6,7 +6,7 @@ public class MenuItem {
     private String label; // Texto visible (ej: "Qué hacemos")
     private String path;  // Ruta del frontend (ej: "/what-we-do")
     private List<String> subItems; // Submenús (ej: ["Cloud","IA","Ciberseguridad"])
-
+    
     // Constructor
     public MenuItem(String label, String path, List<String> subItems) {
         this.label = label;
