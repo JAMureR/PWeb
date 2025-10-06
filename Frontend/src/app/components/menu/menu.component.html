@@ -1,4 +1,4 @@
-<nav>
+<nav [@navAnim]="navState">
   <!-- Logo -->
   <div class="logo">
     <img src="assets/icons/jm.png" alt="JM" class="jm-img">
@@ -10,24 +10,31 @@
     <li *ngFor="let item of menu" [class.active]="activeItem === item">
       <a (click)="toggleSubmenu(item)">
         {{ item.label }}
-        <img src="assets/icons/flecha.png" alt="felcha" class="arrow-icon">
+        <img src="assets/icons/flecha.png" alt="flecha" class="arrow-icon">
       </a>
+
+      <!-- Submenu dentro de cada item -->
+      <!-- Submenú dentro de cada item -->
+      <div class="submenu" [@submenuAnim]="activeItem === item ? 'open' : 'closed'" >
+
+        <!-- El título visible dentro del área del submenú -->
+        <h2 class="submenu-title">
+          {{ item.label }}
+          <img src="assets/icons/Flecha_sig.png" alt="sig" class="sig-icon">
+        </h2>
+
+        <!-- La lista de subitems -->
+        <ul>
+          <li *ngFor="let sub of item.subItems || []">
+            <a>{{ sub }}</a>
+          </li>
+        </ul>
+
+      </div>
     </li>
   </ul>
 
-  <!-- Submenu con animación -->
-  <ul class="submenu" [@submenuAnim]="activeItem?.subItems?.length > 0 ? 'open' : 'closed'">
 
-    <!-- Aquí aparece el título dinámico -->
-  <h2 *ngIf="activeItem?.label">
-    {{ activeItem.label }}
-    <img src="assets/icons/Flecha_sig.png" alt="sig" class="sig-icon">
-  </h2>
-
-    <li *ngFor="let sub of activeItem?.subItems || []">
-      <a>{{ sub }}</a>
-    </li>
-  </ul>
 
   <div class="language-selector" (click)="toggleLanguageMenu()">
     <a class="selected-language">
@@ -40,3 +47,6 @@
     </ul>
   </div>
 </nav>
+<div class="eslogan-container">
+  <h1 class="eslogan"> REINVENTA LO QUE<br>PODRÍA SER TU NEGOCIO</h1>
+</div>
