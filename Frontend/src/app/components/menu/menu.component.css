@@ -303,6 +303,7 @@ li.active .arrow-icon {
   .language-selector {
   display: none; 
   }
+  
 
   /* Hover sobre el logo */
 .logo:hover .jm-img {
@@ -325,55 +326,56 @@ li.active .arrow-icon {
 }
 
 
-
-.eslogan-container{
-  margin-top: 2rem;  
-  margin-bottom: 2rem;        /* margen superior respecto al nav */
-  text-align: center;        /* centra el texto */
+/* Contenedor del eslogan */
+.eslogan-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
   position: relative;
-  top:-50px;
-  
-  
+  top: -50px;
 }
 
-.eslogan{
-  line-height: clamp(1.2, 4vw, 1.8); /* mínimo 1.2, máximo 1.8 */
+/* H1 del eslogan */
+.eslogan {
+  display: inline-block;
+  line-height: clamp(1.2, 4vw, 1.8);
   justify-self: center;
-  padding: 0 2rem;       /* opcional, para que no quede pegado a los bordes */
-  color: #fff;           /* color de texto */
-  font-size: clamp(80px, 8vw, 150px); /* tamaño responsivo */
-  margin: 0; /* 🔹 elimina el margen del h1 */
+  padding: 0 2rem;
+  color: #fff;
+  font-size: clamp(80px, 8vw, 150px);
+  margin: 0;
 }
 
-.eslogan h1{
-  margin-bottom: 10px;
-  
-}
-
+/* Cada letra o palabra del eslogan */
 .eslogan span {
   display: inline-block;
   opacity: 0;
+  position: relative;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out; /* suaviza el seguimiento del ratón */
 }
 
-/* Clases de animación */
+/* Animación inicial desde la izquierda */
 .animate-left {
   animation: slideInLeft 1s forwards;
 }
 
+/* Animación inicial desde la derecha */
 .animate-right {
   animation: slideInRight 1s forwards;
 }
 
-/* Keyframes */
+/* Keyframes para animación desde la izquierda */
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-200px); }
-  to { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
+/* Keyframes para animación desde la derecha */
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(200px); }
-  to { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: translateX(0); }
 }
+
 
 .detalle-eslogan{
   
@@ -399,5 +401,22 @@ li.active .arrow-icon {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* BANNER Media query para pantallas ≤ 400px */
+@media (max-width: 400px) {
+  .eslogan-container {
+  text-align: center;
+  top:10px;
+  } 
+
+  .eslogan {
+    font-size: clamp(40px, 6vw, 80px); /* más pequeño para que quepa */
+    padding: 0 0.2rem;
+  }
+
+  .detalle-eslogan {
+    font-size: clamp(12px, 3vw, 18px);
   }
 }
