@@ -1,8 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
-
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -16,71 +15,91 @@ import { Component, HostListener, OnInit } from '@angular/core';
       state('open', style({ height: '*', opacity: 1, overflow: 'hidden' })),
       transition('closed <=> open', animate('500ms ease-in-out'))
     ]),
-    // 🔹 Nueva animación del nav completo
     trigger('navAnim', [
       state('visible', style({ transform: 'translateY(0%)', opacity: 1 })),
-      state('hidden',  style({ transform: 'translateY(-100%)', opacity: 0 })),
-      transition('visible => hidden', animate('600ms ease-out')), // duración al ocultar
-      transition('hidden => visible', animate('600ms ease-out'))     // duración al mostrar
+      state('hidden', style({ transform: 'translateY(-100%)', opacity: 0 })),
+      transition('visible => hidden', animate('600ms ease-out')),
+      transition('hidden => visible', animate('600ms ease-out'))
     ])
   ]
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, AfterViewInit {
   menu: any[] = [];
   menuOpen: boolean = false;
-  activeItem: any = null; //   el item actualmente abierto
-  //  idioma
+  activeItem: any = null;
   selectedLanguage: string = 'Español';
   languageMenuOpen: boolean = false;
   navState: 'visible' | 'hidden' = 'visible';
   private lastScroll = 0;
 
-  constructor(private http: HttpClient) { }
+  @ViewChild('esloganContainer') esloganContainer!: ElementRef;
+
+  // Variable para reiniciar animación del <p>
+  animateDetalle: boolean = true;
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8080/api/menu')
-      .subscribe({
-        next: data => {
-          this.menu = data;
-          this.menu.forEach(item => item.isOpen = false);
-        },
-        error: err => console.error('Error al cargar menu', err)
-      });
+    this.http.get<any[]>('assets/data/menu.json'/*'http://localhost:8080/api/menu' CAMBIO DE BACKEND A JSON*/).subscribe({
+      next: data => {
+        this.menu = data;
+        this.menu.forEach(item => item.isOpen = false);
+      },
+      error: err => console.error('Error al cargar menu', err)
+    });
   }
 
-  // Detectar scroll
+  ngAfterViewInit(): void {
+    this.resetEsloganAnimation();
+  }
+
   @HostListener('window:scroll', [])
-onWindowScroll() {
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (currentScroll > this.lastScroll && currentScroll > 80) {
-    // Bajando → ocultar inmediatamente
-    this.navState = 'hidden';
-  } else {
-    // Subiendo → mostrar
-    this.navState = 'visible';
+  onWindowScroll() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    this.navState = (currentScroll > this.lastScroll && currentScroll > 80) ? 'hidden' : 'visible';
+    this.lastScroll = currentScroll;
   }
 
-  this.lastScroll = currentScroll;
-}
+  @HostListener('window:resize')
+  onResize() {
+    this.resetEsloganAnimation();
 
+    // Reiniciar animación del <p>
+    this.animateDetalle = false;
+    setTimeout(() => this.animateDetalle = true, 20); // Angular recrea el <p>
+  }
 
+  private resetEsloganAnimation() {
+    if (!this.esloganContainer) return;
+
+    const spans: NodeListOf<HTMLElement> = this.esloganContainer.nativeElement.querySelectorAll('span');
+
+    spans.forEach(span => {
+      // eliminar clases de animación anteriores
+      span.classList.remove('animate-left', 'animate-right');
+
+      // forzar reflow
+      span.offsetHeight;
+
+      // asignar clases según la posición
+      if (span.classList.contains('part1') || span.classList.contains('part3')) {
+        span.classList.add('animate-left');
+        span.style.animationDelay = span.classList.contains('part1') ? '0.2s' : '0.6s';
+      } else if (span.classList.contains('part2') || span.classList.contains('part4')) {
+        span.classList.add('animate-right');
+        span.style.animationDelay = span.classList.contains('part2') ? '0.4s' : '0.8s';
+      }
+    });
+  }
 
   toggleSubmenu(item: any) {
-    if (this.activeItem === item) {
-      // Si haces clic en el mismo item → cerrar
-      this.activeItem = null;
-    } else {
-      // Si es otro item → abrir
-      this.activeItem = item;
-    }
+    this.activeItem = (this.activeItem === item) ? null : item;
   }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
-  //  MÉTODOS DE LENGUAJE
   toggleLanguageMenu() {
     this.languageMenuOpen = !this.languageMenuOpen;
   }
@@ -89,6 +108,4 @@ onWindowScroll() {
     this.selectedLanguage = lang;
     this.languageMenuOpen = false;
   }
-
 }
-

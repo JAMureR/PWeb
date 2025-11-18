@@ -41,7 +41,7 @@ export class InsightComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8080/api/insights')
+    this.http.get<any[]>('assets/data/insight.json'/*'http://localhost:8080/api/insights' CAMBIO DE BACKEND A JSON*/)
       .subscribe({
         next: data => this.insights = data,
         error: err => console.error('Error cargando insights', err)

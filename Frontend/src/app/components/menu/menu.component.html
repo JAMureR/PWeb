@@ -15,7 +15,7 @@
 
       <!-- Submenu dentro de cada item -->
       <!-- Submenú dentro de cada item -->
-      <div class="submenu" [@submenuAnim]="activeItem === item ? 'open' : 'closed'" >
+      <div class="submenu" [@submenuAnim]="activeItem === item ? 'open' : 'closed'">
 
         <!-- El título visible dentro del área del submenú -->
         <h2 class="submenu-title">
@@ -47,6 +47,13 @@
     </ul>
   </div>
 </nav>
-<div class="eslogan-container">
-  <h1 class="eslogan"> REINVENTA LO QUE<br>PODRÍA SER TU NEGOCIO</h1>
+
+<div class="eslogan-container"  #esloganContainer>
+  <h1 class="eslogan" [@fadeInSplit]>
+    <span class="part1">REINVENTA&nbsp; </span>
+    <span class="part2"> LO QUE</span><br>
+    <span class="part3">PODRÍA SER&nbsp; </span>
+    <span class="part4"> TU NEGOCIO</span>
+  </h1>
+  <p *ngIf="animateDetalle" class="detalle-eslogan" >Abriendo paso al cambio <img src="assets/icons/Flecha_sig.png" alt="sig" class="sig-icon"> </p>
 </div>

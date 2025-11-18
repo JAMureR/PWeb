@@ -13,7 +13,7 @@ import java.util.List;
 @RestController // Esto convierte la clase en un controlador REST
 public class MenuController {
 
-	// Endpoint: http://localhost:8080/api/menu
+	// Endpoint: http://localhost:8080/api/menuv
 	@GetMapping("/api/menu")
 	public List<MenuItem> getMenu() {
 		// Devolvemos datos de prueba (mock)

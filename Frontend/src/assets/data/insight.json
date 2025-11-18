@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Cadenas de suministro autónomas",
+    "summary": "Por qué deben ser rápidas, ágiles y sostenibles.",
+    "imageUrl": "assets/insights/supply.jpg",
+    "cta": "Leer más",
+    "extraText": "La automatización permite optimizar procesos y reducir errores en la cadena de suministro."
+  },
+  {
+    "title": "IA generativa en el trabajo",
+    "summary": "De la experimentación al impacto.",
+    "imageUrl": "assets/insights/genai.png",
+    "cta": "Leer más",
+    "extraText": "Implementar IA generativa mejora la creatividad y la eficiencia en distintos departamentos."
+  },
+  {
+    "title": "Transformación digital de empresas",
+    "summary": "Cómo las organizaciones se adaptan a la nueva era digital.",
+    "imageUrl": "assets/insights/digital-transformation.png",
+    "cta": "Leer más",
+    "extraText": "La transformación digital requiere innovación, agilidad y liderazgo estratégico."
+  },
+  {
+    "title": "Ciberseguridad avanzada",
+    "summary": "Protege tu empresa frente a amenazas digitales complejas.",
+    "imageUrl": "assets/insights/cybersecurity.png",
+    "cta": "Leer más",
+    "extraText": "Adoptar medidas avanzadas de ciberseguridad minimiza riesgos y protege los datos críticos."
+  },
+  {
+    "title": "Tendencias en movilidad urbana",
+    "summary": "Soluciones innovadoras para transporte más eficiente y ecológico.",
+    "imageUrl": "assets/insights/urban-mobility.png",
+    "cta": "Leer más",
+    "extraText": "La movilidad urbana sostenible combina tecnología, transporte compartido y planificación inteligente."
+  },
+  {
+    "title": "Economía circular",
+    "summary": "Modelos de negocio que reducen residuos y optimizan recursos.",
+    "imageUrl": "assets/insights/circular-economy.png",
+    "cta": "Leer más",
+    "extraText": "Fomentar la economía circular reduce el impacto ambiental y crea nuevas oportunidades de negocio."
+  },
+  {
+    "title": "Trabajo híbrido y productividad",
+    "summary": "Cómo maximizar el rendimiento combinando oficina y remoto.",
+    "imageUrl": "assets/insights/hybrid-work.png",
+    "cta": "Leer más",
+    "extraText": "Combinar presencial y remoto potencia la flexibilidad y el bienestar de los empleados."
+  },
+  {
+    "title": "Blockchain en negocios",
+    "summary": "Aplicaciones prácticas de la tecnología para transparencia y eficiencia.",
+    "imageUrl": "assets/insights/blockchain.png",
+    "cta": "Leer más",
+    "extraText": "Blockchain permite transacciones seguras, trazabilidad y confianza entre empresas."
+  }
+]

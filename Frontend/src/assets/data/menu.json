@@ -1,0 +1,38 @@
+[
+  {
+    "label": "Qué hacemos",
+    "path": "/what-we-do",
+    "subItems": [
+      "Desarrollo Web",
+      "Aplicaciones Móviles",
+      "Diseño UI/UX",
+      "Consultoría Tecnológica",
+      "Integración de Sistemas",
+      "Automatización de Procesos",
+      "Soporte Técnico",
+      "Marketing Digital",
+      "SEO y Analítica",
+      "Ciberseguridad",
+      "Mantenimiento de Software",
+      "Formación y Capacitación",
+      "Desarrollo de E-commerce",
+      "Servicios en la Nube",
+      "Big Data & IA"
+    ]
+  },
+  {
+    "label": "Industrías",
+    "path": "/industries",
+    "subItems": ["Finanzas", "Salud", "Retail"]
+  },
+  {
+    "label": "Carreras",
+    "path": "/careers",
+    "subItems": ["Estudiantes", "Profesionales"]
+  },
+  {
+    "label": "Sobre nosotros",
+    "path": "/about",
+    "subItems": ["Historia", "Valores", "Noticias"]
+  }
+]
