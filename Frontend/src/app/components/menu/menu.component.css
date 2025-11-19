@@ -293,9 +293,32 @@ li.active .arrow-icon {
   background-color: #333;
 }
 
+/* Menú móvil oculto por defecto */
+.nav-menu-mobile {
+  display: none;
+}
 
+/* Botón hamburguesa oculto por defecto */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
 /* RESPONSIVE */
 @media (max-width: 1000px) {
+  
   /* ocultamos el menú */
   .nav-menu {
     display: none;
@@ -303,7 +326,72 @@ li.active .arrow-icon {
   .language-selector {
   display: none; 
   }
+  /* Mostrar hamburguesa */
+  .hamburger {
+     display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  top: -3.2rem;       /* ajusta según tu layout */
+  grid-column: 1;
+  justify-self: start;
+  align-self: start;
+  }
+  .hamburger span {
+  display: block;
+  height: 1px;           /* más finas */
+  background-color: #fff;
   
+  transition: all 0.3s ease;
+}
+
+  /* Ajustar nav: hamburguesa izquierda, logo centro */
+  nav {
+     display: grid;
+    grid-template-columns: auto 1fr auto; /* hamburguesa - logo - espacio */
+    align-items: center;
+    padding: 0 1.5rem; /* espacio a los lados */
+  }
+
+  /* Menú móvil */
+  .nav-menu-mobile {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0;
+    background-color: #000;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* debajo del nav */
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .nav-menu-mobile.open {
+    display: flex;
+  }
+
+  .nav-menu-mobile li {
+    padding: 0.5rem 1rem;
+  }
+
+  /* Submenú móvil */
+  .submenu-mobile {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submenu-mobile li {
+    padding: 0.3rem 0;
+  }
+
+
+
 
   /* Hover sobre el logo */
 .logo:hover .jm-img {
@@ -405,7 +493,7 @@ li.active .arrow-icon {
 }
 
 /* BANNER Media query para pantallas ≤ 400px */
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .eslogan-container {
   text-align: center;
   top:10px;

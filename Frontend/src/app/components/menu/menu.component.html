@@ -5,7 +5,7 @@
     <img src="assets/icons/dynamics.png" alt="Dynamics" class="dynamics-img">
   </div>
 
-  <!-- Menu -->
+  <!-- Menu Desktop -->
   <ul class="nav-menu">
     <li *ngFor="let item of menu" [class.active]="activeItem === item">
       <a (click)="toggleSubmenu(item)">
@@ -46,6 +46,29 @@
       <li (click)="selectLanguage('Inglés')">Inglés</li>
     </ul>
   </div>
+
+  <!-- Botón hamburguesa Móvil -->
+  <div class="hamburger" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Menú Móvil -->
+  <ul class="nav-menu-mobile" [class.open]="menuOpen">
+    <li *ngFor="let item of menu">
+      <a (click)="toggleSubmenu(item)">
+        {{ item.label }}
+        <span *ngIf="item.subItems" class="arrow-icon"></span>
+      </a>
+      <ul *ngIf="item.subItems && item.isOpen" class="submenu-mobile">
+        <li *ngFor="let sub of item.subItems">
+          <a>{{ sub.label }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
 </nav>
 
 

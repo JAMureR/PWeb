@@ -42,7 +42,8 @@ interface MenuItem {
 export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   menu: MenuItem[] = [];
-  menuOpen: boolean = false;
+  menuOpen: boolean = false; // menú principal
+  mobileMenuOpen: boolean = false; // menú móvil hamburguesa
   activeItem: MenuItem | null = null;
   selectedLanguage: string = 'Español';
   languageMenuOpen: boolean = false;
@@ -84,7 +85,6 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
     const container: HTMLElement = this.esloganContainer.nativeElement;
     const spans: NodeListOf<HTMLElement> = container.querySelectorAll('span');
 
-    // Limpiar estado previo
     spans.forEach(span => {
       span.classList.remove('animate-left', 'animate-right');
       span.style.opacity = '0';
@@ -92,10 +92,8 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
       span.style.animationDelay = '0s';
     });
 
-    // Forzar reflow
     container.offsetHeight;
 
-    // Aplicar animación inicial con distintos delays
     spans.forEach(span => {
       if (span.classList.contains('part1') || span.classList.contains('part3')) {
         span.classList.add('animate-left');
@@ -106,7 +104,6 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
 
-    // Activar seguimiento del ratón después de la animación
     clearTimeout(this.esloganTimeout);
     this.esloganTimeout = setTimeout(() => {
       spans.forEach(span => {
@@ -129,7 +126,7 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
     const centerX = rect.width / 2;
 
     let diff = (offsetX - centerX) / centerX;
-    diff = Math.max(-1, Math.min(1, diff)); // limitar entre -1 y 1
+    diff = Math.max(-1, Math.min(1, diff));
 
     const maxOffset = 50;
     const spans: NodeListOf<HTMLElement> = span.querySelectorAll('span');
@@ -138,12 +135,10 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
       const sameDirection = span.classList.contains('part1') || span.classList.contains('part3');
       const direction = sameDirection ? 1 : -1;
       const offset = diff * maxOffset * direction;
-
       span.style.transform = `translateX(${offset}px)`;
     });
   }
 
-  /** Ratón sale del h1 */
   onEsloganMouseLeave(): void {
     if (!this.mouseFollowEnabled || !this.esloganContainer?.nativeElement) return;
 
@@ -173,15 +168,12 @@ export class MenuComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Toggle submenú */
   toggleSubmenu(item: MenuItem): void {
     this.activeItem = (this.activeItem === item) ? null : item;
-
-    // Abrir o cerrar subItems
-    if (item.subItems) {
-      item.isOpen = !item.isOpen;
-    }
+    if (item.subItems) item.isOpen = !item.isOpen;
   }
 
-  toggleMenu(): void {
-    this.menuOpen = !this.menuOpen;
+  /** Toggle menú principal (para hamburguesa móvil) */
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 
   toggleLanguageMenu(): void {
